@@ -1,5 +1,5 @@
 import flatpickr from 'flatpickr';
-import "flatpickr/dist/flatpickr.min.css";
+import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
 const ref = {
@@ -67,3 +67,6 @@ function convertMs(ms) {
 }
 
 ref.btn.addEventListener('click', onTimerStart);
+
+
+
