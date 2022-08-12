@@ -2,17 +2,14 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const ref = {
   form: document.querySelector('.form'),
-  firstDel: document.querySelector('input[name="delay"]'),
-  stepDel: document.querySelector('input[name="step"]'),
-  amountDel: document.querySelector('input[name="amount"]'),
 };
 
 function onClickFormBtn(e) {
   e.preventDefault();
 
-  const firstDelay = Number(ref.firstDel.value);
-  const step = Number(ref.stepDel.value);
-  const amount = Number(ref.amountDel.value);
+  const firstDelay = Number(e.target.elements.delay.value);
+  const step = Number(e.target.elements.step.value);
+  const amount = Number(e.target.elements.amount.value);
 
   let delay = firstDelay;
 

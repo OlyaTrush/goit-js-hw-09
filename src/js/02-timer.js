@@ -3,17 +3,19 @@ import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
 const ref = {
+  input: document.querySelector('#datetime-picker'),
   btn: document.querySelector('button[data-start]'),
   daysEl: document.querySelector('span[data-days]'),
   hoursEl: document.querySelector('span[data-hours]'),
   minutesEl: document.querySelector('span[data-minutes]'),
   secondsEl: document.querySelector('span[data-seconds]'),
 };
+
 ref.btn.disabled = true;
 let newDate = null;
 let intervalId = null;
 
-flatpickr('#datetime-picker', {
+flatpickr(ref.input, {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
@@ -38,6 +40,8 @@ function onTimerStart() {
       return dataDisplay();
     }
     dataDisplay(leftTime);
+    ref.btn.disabled = true;
+    ref.input.disabled= true;
   }, 1000);
 }
 
