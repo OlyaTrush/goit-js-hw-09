@@ -12,16 +12,17 @@ let timerId = null;
 //   refs.stopBtn.toggleAttribute('disabled');
 // }
 
-function makeStatusBtn() {
-  return function inside(status) {
+function makeStatusBtn(status) {
+  return function() {
     refs.startBtn.disabled = status;
     refs.stopBtn.disabled = !status;
   };
 }
 
-const start = makeStatusBtn();
+const start = makeStatusBtn(true);
+const stop = makeStatusBtn(false);
 
-start(false);
+stop();
 
 
 function getRandomHexColor() {
@@ -36,13 +37,13 @@ const onBgdColor = () => {
 const onStartBtn = () => {
   timerId = setInterval(onBgdColor, 1000);
   // makeStatusBtn();
-  start(true);
+  start();
 };
 
 const onStopBtn = () => {
   clearInterval(timerId);
   // makeStatusBtn();
-  start(false);
+  stop();
 };
 
 refs.startBtn.addEventListener('click', onStartBtn);
