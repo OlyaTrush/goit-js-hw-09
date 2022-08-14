@@ -6,24 +6,20 @@ const refs = {
 
 let timerId = null;
 
-// refs.stopBtn.disabled = true;
-// function makeStatusBtn() {
-//   refs.startBtn.toggleAttribute('disabled');
-//   refs.stopBtn.toggleAttribute('disabled');
-// }
-
-function makeStatusBtn(status) {
-  return function() {
-    refs.startBtn.disabled = status;
-    refs.stopBtn.disabled = !status;
+function makeStatusBtn() {
+  let start = true;
+  let stop = false;
+  return function () {
+    start = !start;
+    stop = !stop;
+    refs.startBtn.disabled = start;
+    refs.stopBtn.disabled = stop;
   };
 }
 
-const start = makeStatusBtn(true);
-const stop = makeStatusBtn(false);
+const disabledSwitched = makeStatusBtn();
 
-stop();
-
+disabledSwitched();
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -36,14 +32,12 @@ const onBgdColor = () => {
 
 const onStartBtn = () => {
   timerId = setInterval(onBgdColor, 1000);
-  // makeStatusBtn();
-  start();
+  disabledSwitched();
 };
 
 const onStopBtn = () => {
   clearInterval(timerId);
-  // makeStatusBtn();
-  stop();
+  disabledSwitched();
 };
 
 refs.startBtn.addEventListener('click', onStartBtn);
